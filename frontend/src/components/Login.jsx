@@ -38,7 +38,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -67,7 +67,7 @@ const Login = () => {
   };
 
   return (
-      <div className="flex items-center justify-center bg-white px-8 py-16">
+      <div className='bg-gray-300 min-h-screen flex items-center justify-center pt-[70px]'>
         <form
           className="w-full max-w-md bg-gray-100 p-8 rounded-lg shadow-lg"
           onSubmit={handleSubmit}
@@ -101,6 +101,13 @@ const Login = () => {
           />
 
           {error && <p className="text-red-600 text-center mt-3">{error}</p>}
+
+          <p className="text-center mt-4">
+              Don't have an account?{" "}
+              <Link to="/register" className="text-blue-600 hover:underline">
+                  Register here
+              </Link>
+          </p>
         </form>
       </div>
   );

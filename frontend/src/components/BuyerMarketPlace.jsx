@@ -110,7 +110,7 @@ const BuyerMarketplace = () => {
       );
       alert("Order placed successfully!");
       setQuantities((prev) => ({ ...prev, [cropId]: "" }));
-      fetchCrops(); // refresh available quantities
+      fetchCrops(); 
     } catch (err) {
       console.error("Order failed:", err);
       alert("Failed to place order.");
@@ -118,7 +118,7 @@ const BuyerMarketplace = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100 min-h-screen pt-[70px]">
       <div className="mb-6 flex justify-between items-center">
         <h2 className="text-2xl font-bold">
           {showOrders ? "My Orders" : "Available Farm Products"}
@@ -139,7 +139,7 @@ const BuyerMarketplace = () => {
           {orders.length === 0 ? (
             <p>No orders yet.</p>
           ) : (
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {orders.map((order) => (
                 <li
                   key={order._id}
@@ -173,7 +173,7 @@ const BuyerMarketplace = () => {
           )}
         </div>
       ) : (
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((p) => (
             <li key={p._id} className="bg-white rounded-lg shadow p-4 border">
               <img

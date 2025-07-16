@@ -58,7 +58,8 @@ const FarmerDashboard = () => {
   };
 
   const handleAddCrop = async () => {
-    if (!name || !quantity || !price || !imageUrl) {
+    const {name, quantity , price} = cropForm
+    if (!name || !quantity || !price ) {
       alert("All fields are required.");
       return;
     }
@@ -143,7 +144,7 @@ const FarmerDashboard = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen relative z-0">
+    <div className="p-6 bg-gray-100 min-h-screen relative z-0 pt-[70px]">
       <div className="flex justify-between items-center mb-6">
         <div className="space-x-4">
           <button
@@ -227,7 +228,7 @@ const FarmerDashboard = () => {
 
       {/* ORDERS VIEW */}
       {activeTab === "orders" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {orders.map((order) => (
             <div key={order._id} className="bg-white p-4 rounded shadow border">
               <img
@@ -281,7 +282,7 @@ const FarmerDashboard = () => {
 
       {/* REQUESTS VIEW */}
       {activeTab === "requests" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {requests.map((req) => (
             <div key={req._id} className="bg-white p-4 rounded shadow border">
               <p>

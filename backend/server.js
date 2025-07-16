@@ -9,6 +9,7 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import contactRequestRoutes from './routes/contactRequestRoutes.js'
+import otpRoutes from './routes/otpRoutes.js'
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -32,6 +33,7 @@ app.use('/users',authMiddleware ,userRoutes);
 app.use('/orders',authMiddleware,orderRoutes);
 app.use('/chat',authMiddleware, chatRoutes);
 app.use('/contact',authMiddleware,contactRequestRoutes);
+app.use('/otp',otpRoutes);
 
 app.listen(PORT , '0.0.0.0' , async () => {
     try {

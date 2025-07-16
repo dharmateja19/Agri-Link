@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios'
 import './App.css'
-import Login from './components/login';
+import Login from './components/Login';
 import Register from './components/Register'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -9,6 +8,7 @@ import LandingPage from './components/LandingPage';
 import FarmerDashboard from './components/FarmerDashboard';
 import BuyerMarketplace from './components/BuyerMarketPlace';
 import AdminPanel from './components/AdminPanel';
+import Copyright from './components/Copyright';
 function App() {
   return (
     <Router>
@@ -21,6 +21,7 @@ function App() {
         <Route path='/buyer/dashboard' element = {<  BuyerMarketplace/>} />
         <Route path='/admin/dashboard' element = {<  AdminPanel/>} />
       </Routes>
+      <Copyright/>
     </Router>
   )
 }
