@@ -14,6 +14,7 @@ const FarmerDashboard = () => {
     quantity: "",
     price: "",
     imageUrl: "",
+    description : ""
   });
 
   const token = localStorage.getItem("token");
@@ -69,7 +70,7 @@ const FarmerDashboard = () => {
       });
       setShowAddModal(false);
       fetchCrops();
-      setCropForm({ name: "", quantity: "", price: "", imageUrl: "" });
+      setCropForm({ name: "", quantity: "", price: "", imageUrl: "", description : "" });
     } catch (err) {
       console.error(err);
     }
@@ -139,6 +140,7 @@ const FarmerDashboard = () => {
       quantity: crop.quantity,
       price: crop.price,
       imageUrl: crop.imageUrl,
+      description: crop.description
     });
     setShowUpdateModal(true);
   };
@@ -197,7 +199,7 @@ const FarmerDashboard = () => {
               <img
                 src={
                   p.imageUrl ||
-                  "https://via.placeholder.com/400x250.png?text=No+Image"
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                 }
                 className="w-full h-48 object-cover"
                 alt={p.name}
@@ -206,6 +208,7 @@ const FarmerDashboard = () => {
                 <h3 className="text-xl font-semibold">{p.name}</h3>
                 <p>Quantity: {p.quantity} kg</p>
                 <p>Price: ₹{p.price}</p>
+                {p.description && <p>Description: {p.description}</p>}
                 <div className="mt-4 space-x-2">
                   <button
                     onClick={() => openUpdateModal(p)}
@@ -229,12 +232,14 @@ const FarmerDashboard = () => {
       {/* ORDERS VIEW */}
       {activeTab === "orders" && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {orders.map((order) => (
+          
+          {(orders.length === 0) ? "No Orders Yet" : orders.map((order) => (
             <div key={order._id} className="bg-white p-4 rounded shadow border">
+              <p className="text-2xl font-semibold">#{order._id}</p>
               <img
                 src={
                   order.crop?.imageUrl ||
-                  "https://via.placeholder.com/400x250.png?text=No+Image"
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                 }
                 alt={order.crop?.name}
                 className="w-full h-40 object-cover mb-4 rounded"
@@ -283,7 +288,7 @@ const FarmerDashboard = () => {
       {/* REQUESTS VIEW */}
       {activeTab === "requests" && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {requests.map((req) => (
+          {(requests.length === 0) ? "No Requests Yet" : requests.map((req) => (
             <div key={req._id} className="bg-white p-4 rounded shadow border">
               <p>
                 <strong>Buyer:</strong> {req.buyer?.name}
@@ -330,6 +335,7 @@ const FarmerDashboard = () => {
                     quantity: "",
                     price: "",
                     imageUrl: "",
+                    description: ""
                   });
               }}
               onSubmit={handleAddCrop}
@@ -353,6 +359,7 @@ const FarmerDashboard = () => {
                   quantity: "",
                   price: "",
                   imageUrl: "",
+                  description: ""
                 });
               }}
               onSubmit={handleUpdateCrop}
@@ -396,6 +403,13 @@ const CropForm = ({ form, setForm, onCancel, onSubmit }) => (
       className="w-full p-2 mb-4 border rounded"
       value={form.imageUrl}
       onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+    />
+    <input
+      type="text"
+      placeholder="Description"
+      className="w-full p-2 mb-4 border rounded"
+      value={form.description}
+      onChange={(e) => setForm({ ...form, description: e.target.value })}
     />
     <div className="flex justify-end space-x-3">
       <button

@@ -2,6 +2,9 @@ import { Router } from "express";
 import Crop from "../models/Crop.model.js";
 import authMiddleware, { authorize } from "../middleware/authMiddleware.js";
 import fetchCropImage from "../utils/fetchCropImage.js";
+import Order from "../models/Order.model.js"
+import ContactRequest from "../models/ContactRequest.model.js";
+import mongoose from "mongoose";
 
 const router = Router();
 
@@ -95,7 +98,9 @@ router.delete("/deletecrop/:id", authMiddleware ,authorize(['farmer']), async (r
         const farmerId = req.user.id;
         const deleted = await Crop.findOneAndDelete({_id:cropId,farmer:farmerId});
         if(!deleted) return res.status(404).json({message : "crop not found or unauthorized"});
-
+        const cropObjectId = new mongoose.Types.ObjectId(cropId);
+        await Order.deleteMany({crop : cropObjectId});
+        await ContactRequest.deleteMany({crop : cropObjectId})
         res.status(200).json({message: "Crop deleted successfully"});
     } catch (error) {
         console.log(error);

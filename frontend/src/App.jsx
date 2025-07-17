@@ -9,6 +9,7 @@ import FarmerDashboard from './components/FarmerDashboard';
 import BuyerMarketplace from './components/BuyerMarketPlace';
 import AdminPanel from './components/AdminPanel';
 import Copyright from './components/Copyright';
+import ProfilePage from './components/ProfilePage';
 function App() {
   return (
     <Router>
@@ -20,6 +21,7 @@ function App() {
         <Route path='/farmer/dashboard' element = {<  FarmerDashboard/>} />
         <Route path='/buyer/dashboard' element = {<  BuyerMarketplace/>} />
         <Route path='/admin/dashboard' element = {<  AdminPanel/>} />
+        <Route path='/user/profile' element = {<  ProfilePage/>} />
       </Routes>
       <Copyright/>
     </Router>

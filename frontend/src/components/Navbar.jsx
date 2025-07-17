@@ -42,16 +42,15 @@
 // export default Navbar;
 
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    navigate("/login");
+    localStorage.clear();
+    navigate('/', { replace: true }); 
   };
 
   return (
@@ -61,16 +60,16 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center gap-4">
-        <Link to="/" className="hover:underline">
+        <Link to="/" className="hover:underline hover:text-yellow-300 font-medium">
           Home
         </Link>
 
         {!user ? (
           <>
-            <Link to="/register" className="hover:underline">
+            <Link to="/register" className="hover:underline hover:text-yellow-300 font-medium">
               Register
             </Link>
-            <Link to="/login" className="hover:underline">
+            <Link to="/login" className="hover:underline hover:text-yellow-300 font-medium">
               Login
             </Link>
           </>
@@ -78,14 +77,19 @@ const Navbar = () => {
           <>
             <Link
               to={`/${user.role}/dashboard`}
-              className="hover:underline"
+              className="hover:underline hover:text-yellow-300 font-medium"
             >
               Dashboard
             </Link>
-            <span className="italic text-sm hidden sm:inline">Welcome, {user.name}</span>
+            <Link
+              to="/user/profile"
+              className="hover:underline hover:text-yellow-300 font-medium"
+            >
+              {user.name}
+            </Link>
             <button
               onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded hover:underline cursor-pointer"
+              className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded hover:underline  hover:text-yellow-300 font-medium cursor-pointer"
             >
               Logout
             </button>

@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/",authMiddleware, authorize(['admin']), async (req,res) => {
     try {
-        const users = await User.find().select('-password');
+        const users = await User.find({role:['farmer','buyer']}).select('-password');
         res.status(200).json({message : "Users found successfully",users});
     } catch (error) {
         console.log(error);
@@ -13,9 +13,9 @@ router.get("/",authMiddleware, authorize(['admin']), async (req,res) => {
     }
 });
 
-router.get("/:id",authMiddleware, async (req,res) => {
+router.get("/profile",authMiddleware, async (req,res) => {
     try {
-        const userId = req.params.id;
+        const userId = req.user.id;
         const user = await User.findOne({_id : userId}).select('-password');
         if(!user) return res.status(404).json({message: "user not found"});
         res.status(200).json({message: "User found successfully" , user});
