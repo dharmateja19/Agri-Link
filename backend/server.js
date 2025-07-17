@@ -34,6 +34,9 @@ app.use('/orders',authMiddleware,orderRoutes);
 app.use('/chat',authMiddleware, chatRoutes);
 app.use('/contact',authMiddleware,contactRequestRoutes);
 app.use('/otp',otpRoutes);
+app.use((req, res, next) => {
+  res.status(404).json({ message: "404 Not Found" });
+});
 
 app.listen(PORT , '0.0.0.0' , async () => {
     try {

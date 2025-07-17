@@ -10,6 +10,7 @@ import BuyerMarketplace from './components/BuyerMarketPlace';
 import AdminPanel from './components/AdminPanel';
 import Copyright from './components/Copyright';
 import ProfilePage from './components/ProfilePage';
+import NotFound from './components/NotFound';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/buyer/dashboard' element = {<  BuyerMarketplace/>} />
         <Route path='/admin/dashboard' element = {<  AdminPanel/>} />
         <Route path='/user/profile' element = {<  ProfilePage/>} />
+        <Route path='*' element = {< NotFound/>} />
       </Routes>
       <Copyright/>
     </Router>
