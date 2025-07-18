@@ -9,8 +9,6 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import contactRequestRoutes from './routes/contactRequestRoutes.js'
-import otpRoutes from './routes/otpRoutes.js'
-
 dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
@@ -33,7 +31,6 @@ app.use('/users',authMiddleware ,userRoutes);
 app.use('/orders',authMiddleware,orderRoutes);
 app.use('/chat',authMiddleware, chatRoutes);
 app.use('/contact',authMiddleware,contactRequestRoutes);
-app.use('/otp',otpRoutes);
 app.use((req, res, next) => {
   res.status(404).json({ message: "404 Not Found" });
 });
