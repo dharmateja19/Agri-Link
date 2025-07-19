@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
+const apiurl = import.meta.env.VITE_BACKEND_BASE_URL
 const BuyerMarketplace = () => {
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
@@ -15,7 +15,7 @@ const BuyerMarketplace = () => {
   // Fetch all crops
   const fetchCrops = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/crops`, {
+      const res = await axios.get(`${apiurl}/crops`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(res.data.crops || res.data);
@@ -27,7 +27,7 @@ const BuyerMarketplace = () => {
   // Fetch all orders placed by buyer
   const fetchOrders = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/orders/buyer`, {
+      const res = await axios.get(`${apiurl}/orders/buyer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data.orders || []);
@@ -39,7 +39,7 @@ const BuyerMarketplace = () => {
   const requestContact = async (farmerId, cropId) => {
     try {
       await axios.post(
-        `http://localhost:3000/contact/request`,
+        `${apiurl}/contact/request`,
         { farmerId, cropId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -52,7 +52,7 @@ const BuyerMarketplace = () => {
   const fetchContactStatus = async (farmerId, cropId) => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/contact/status/${farmerId}/${cropId}`,
+        `${apiurl}/contact/status/${farmerId}/${cropId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setRequestStatuses((prev) => ({
@@ -92,7 +92,7 @@ const BuyerMarketplace = () => {
 
     try {
       await axios.post(
-        `http://localhost:3000/orders/addorder`,
+        `${apiurl}/orders/addorder`,
         { cropId, quantity: qty },
         { headers: { Authorization: `Bearer ${token}` } }
       );

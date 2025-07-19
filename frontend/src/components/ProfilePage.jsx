@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+const apiurl = import.meta.env.VITE_BACKEND_BASE_URL
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [crops, setCrops] = useState([]);
@@ -9,7 +9,7 @@ const ProfilePage = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/users/profile`, {
+      const res = await axios.get(`${apiurl}/users/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(res.data.user);
@@ -20,7 +20,7 @@ const ProfilePage = () => {
 
   const fetchCrops = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/crops/farmer`, {
+      const res = await axios.get(`${apiurl}/crops/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCrops(res.data.crops || []);
@@ -33,8 +33,8 @@ const ProfilePage = () => {
     try {
       const url =
         user?.role === "farmer"
-          ? `http://localhost:3000/orders/farmer`
-          : `http://localhost:3000/orders/buyer`;
+          ? `${apiurl}/orders/farmer`
+          : `${apiurl}/orders/buyer`;
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` },
       });

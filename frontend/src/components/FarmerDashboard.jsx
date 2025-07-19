@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
+const apiurl = import.meta.env.VITE_BACKEND_BASE_URL
 const FarmerDashboard = () => {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -28,7 +28,7 @@ const FarmerDashboard = () => {
 
   const fetchCrops = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/crops/farmer`, {
+      const res = await axios.get(`${apiurl}/crops/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(res.data.crops);
@@ -39,7 +39,7 @@ const FarmerDashboard = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/orders/farmer`, {
+      const res = await axios.get(`${apiurl}/orders/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data.orders);
@@ -50,7 +50,7 @@ const FarmerDashboard = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/contact/farmer`, {
+      const res = await axios.get(`${apiurl}/contact/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(res.data.requests);
@@ -66,7 +66,7 @@ const FarmerDashboard = () => {
       return;
     }
     try {
-      await axios.post(`http://localhost:3000/crops/addcrop`, cropForm, {
+      await axios.post(`${apiurl}/crops/addcrop`, cropForm, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setShowAddModal(false);
@@ -80,7 +80,7 @@ const FarmerDashboard = () => {
   const handleUpdateCrop = async () => {
     try {
       await axios.put(
-        `http://localhost:3000/crops/updatecrop/${selectedCrop._id}`,
+        `${apiurl}/crops/updatecrop/${selectedCrop._id}`,
         cropForm,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -95,7 +95,7 @@ const FarmerDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/crops/deletecrop/${id}`, {
+      await axios.delete(`${apiurl}/crops/deletecrop/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchCrops();
@@ -107,7 +107,7 @@ const FarmerDashboard = () => {
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:3000/orders/updateorder/${orderId}`,
+        `${apiurl}/orders/updateorder/${orderId}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -122,7 +122,7 @@ const FarmerDashboard = () => {
   const handleRequestResponse = async (id, status) => {
     try {
       await axios.put(
-        `http://localhost:3000/contact/respond/${id}`,
+        `${apiurl}/contact/respond/${id}`,
         { status },
         {
           headers: { Authorization: `Bearer ${token}` },

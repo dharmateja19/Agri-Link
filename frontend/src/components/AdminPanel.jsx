@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const apiurl = import.meta.env.VITE_BACKEND_BASE_URL
 const AdminPanel = () => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
@@ -9,11 +10,11 @@ const AdminPanel = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get(`http://localhost:3000/users`, { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`${apiurl}/users`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setUsers(res.data.users));
-    axios.get(`http://localhost:3000/crops`, { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`${apiurl}/crops`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setProducts(res.data.crops));
-    axios.get(`http://localhost:3000/orders`, { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`${apiurl}/orders`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setOrders(res.data.orders));
   }, []);
 
