@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
 const FarmerDashboard = () => {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -27,7 +28,7 @@ const FarmerDashboard = () => {
 
   const fetchCrops = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/crops/farmer", {
+      const res = await axios.get(`http://localhost:3000/crops/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(res.data.crops);
@@ -38,7 +39,7 @@ const FarmerDashboard = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/orders/farmer", {
+      const res = await axios.get(`http://localhost:3000/orders/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data.orders);
@@ -49,7 +50,7 @@ const FarmerDashboard = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/contact/farmer", {
+      const res = await axios.get(`http://localhost:3000/contact/farmer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(res.data.requests);
@@ -65,7 +66,7 @@ const FarmerDashboard = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3000/crops/addcrop", cropForm, {
+      await axios.post(`http://localhost:3000/crops/addcrop`, cropForm, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setShowAddModal(false);
@@ -246,6 +247,9 @@ const FarmerDashboard = () => {
               />
               <p>
                 <strong>Buyer:</strong> {order.buyer?.name || "Unknown"}
+              </p>
+              <p>
+                <strong>Buyer Mobile:</strong> {order.buyer?.mobile || "Unknown"}
               </p>
               <p>
                 <strong>Crop:</strong> {order.crop?.name}

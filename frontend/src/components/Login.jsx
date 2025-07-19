@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate,Link } from 'react-router-dom';
 
+const apiurl = import.meta.env.VITE_BACKEND_BASE_URL
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
@@ -14,7 +15,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/auth/login', formData);
+      // console.log(process.env.REACT_APP_BACKEND_BASE_URL)
+      console.log(apiurl);
+      
+      const res = await axios.post(`${apiurl}/auth/login`, formData);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       localStorage.setItem('token', res.data.token);
 
@@ -24,6 +28,7 @@ const Login = () => {
       else if (role === 'admin') navigate('/admin/dashboard');
       else navigate('/');
     } catch (error) {
+      console.log(error);
       setError(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };

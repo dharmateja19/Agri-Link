@@ -111,7 +111,7 @@ router.delete('/deleteorder/:id', authMiddleware ,authorize(['buyer']), async (r
 router.get('/farmer', authMiddleware ,authorize(['farmer']),async (req,res) => {
     try {
         const farmerId = req.user.id;
-        const orders = await Order.find({farmer: farmerId}).populate('crop', 'name price imageUrl').populate('farmer', 'name').populate('buyer','name location');
+        const orders = await Order.find({farmer: farmerId}).populate('crop', 'name price imageUrl').populate('farmer', 'name').populate('buyer','name mobile location');
         res.status(200).json({message : "Orders found successfully" , orders});
     } catch (error) {
         console.log(error);

@@ -46,7 +46,7 @@ const Register = () => {
         if (!validateForm()) return;
 
         try {
-            const res = await axios.post("http://localhost:3000/auth/register", formData);
+            const res = await axios.post(`http://localhost:3000/auth/register`, formData);
             alert('Registration successful. Please Login.');
             navigate('/login');
         } catch (error) {

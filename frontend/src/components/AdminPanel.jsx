@@ -9,11 +9,11 @@ const AdminPanel = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:3000/users', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`http://localhost:3000/users`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setUsers(res.data.users));
-    axios.get('http://localhost:3000/crops', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`http://localhost:3000/crops`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setProducts(res.data.crops));
-    axios.get('http://localhost:3000/orders', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`http://localhost:3000/orders`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setOrders(res.data.orders));
   }, []);
 

@@ -7,7 +7,6 @@ import cropRoutes from './routes/cropRoutes.js'
 import authMiddleware from './middleware/authMiddleware.js';
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js';
-import chatRoutes from './routes/chatRoutes.js';
 import contactRequestRoutes from './routes/contactRequestRoutes.js'
 dotenv.config();
 const PORT = process.env.PORT;
@@ -29,7 +28,6 @@ app.use('/auth',authRoutes);
 app.use('/crops',authMiddleware,cropRoutes);
 app.use('/users',authMiddleware ,userRoutes);
 app.use('/orders',authMiddleware,orderRoutes);
-app.use('/chat',authMiddleware, chatRoutes);
 app.use('/contact',authMiddleware,contactRequestRoutes);
 app.use((req, res, next) => {
   res.status(404).json({ message: "404 Not Found" });
