@@ -13,6 +13,7 @@ const Register = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,19 +28,29 @@ const Register = () => {
         const newErrors = {};
         const { name, email, password, mobile, role, location } = formData;
 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
         if (!name.trim()) newErrors.name = "Name is required";
         if (!email.trim()) newErrors.email = "Email is required";
         else if (!validateEmail(email)) newErrors.email = "Invalid email format";
-        if (!password) newErrors.password = "Password is required";
-        else if (password.length < 6) newErrors.password = "Password must be at least 6 characters";
+
+        if (!password) {
+            newErrors.password = "Password is required";
+        } else if (!passwordRegex.test(password)) {
+            newErrors.password =
+            "Password must be at least 6 characters and include uppercase, lowercase, number, and special character";
+        }
+
         if (!mobile.trim()) newErrors.mobile = "Mobile number is required";
         else if (mobile.length < 10) newErrors.mobile = "Mobile number must be at least 10 digits";
+
         if (!role) newErrors.role = "Please select a role";
         if (!location.trim()) newErrors.location = "Location is required";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,7 +98,7 @@ const Register = () => {
                 <label className='mt-4 font-semibold'>Password</label>
                 <input
                     className='border-2 border-black mt-1 px-6 py-2 rounded-2xl'
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={formData.password}
                     placeholder="Enter a strong password"
@@ -124,8 +135,20 @@ const Register = () => {
                     value={formData.location}
                     placeholder="Enter your location"
                     onChange={handleData}
-                />
+                    />
                 {errors.location && <p className="text-red-600 text-sm">{errors.location}</p>}
+                <div className="mt-4 flex items-center">
+                    <input
+                        type="checkbox"
+                        id="showPassword"
+                        className="mr-2"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                    />
+                    <label htmlFor="showPassword" className="text-sm text-gray-700">
+                        Show Password
+                    </label>
+                </div>
                 <input
                     className='bg-green-500 hover:bg-green-600 text-white font-semibold mt-6 px-6 py-2 rounded-2xl cursor-pointer'
                     type="submit"

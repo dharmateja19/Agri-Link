@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-green-700 text-white shadow">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
         <Link to="/" className="text-2xl font-bold">
           AgriLink
         </Link>
