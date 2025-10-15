@@ -44,21 +44,21 @@
 
 git clone https://github.com/yourusername/agrilink.git 
 
-### Installation & Setup
+## Installation & Setup
 
-## Navigate to the project directory:
+# Navigate to the project directory:
 
 cd agrilink
 
-## Install backend dependencies:
+# Install backend dependencies:
 cd backend
 npm install
 
-## Install frontend dependencies:
+# Install frontend dependencies:
 cd ../frontend
 npm install
 
-## Setup environment variables:
+# Setup environment variables:
 
 Create a .env file in the backend folder with the following content:
 
@@ -68,13 +68,13 @@ JWT_SECRET=your_jwt_secret
 
 ## Run the application:
 
-### Start backend:
+# Start backend:
 
 cd backend
 npm run dev
 
 
-### Start frontend:
+# Start frontend:
 
 cd ../frontend
 npm start
