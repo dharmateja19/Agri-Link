@@ -44,21 +44,19 @@
 
 git clone https://github.com/yourusername/agrilink.git 
 
-## Installation & Setup
-
-# Navigate to the project directory:
+2. Navigate to the project directory:
 
 cd agrilink
 
-# Install backend dependencies:
+3. Install backend dependencies:
 cd backend
 npm install
 
-# Install frontend dependencies:
+4. Install frontend dependencies:
 cd ../frontend
 npm install
 
-# Setup environment variables:
+5. Setup environment variables:
 
 Create a .env file in the backend folder with the following content:
 
@@ -66,7 +64,7 @@ PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 
-## Run the application:
+6. Run the application:
 
 # Start backend:
 
