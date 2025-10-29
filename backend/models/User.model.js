@@ -23,13 +23,7 @@ const UserSchema = new mongoose.Schema({
   mobile: {
     type: String,
     required: [true, "Mobile number is required."],
-    unique: true,
-    validate: {
-      validator: function (v) {
-        return /^[6-9]\d{9}$/.test(v.toString());
-      },
-      message: "Enter a valid 10-digit Indian mobile number.",
-    },
+    unique: true
   },
   role: {
     type: String,

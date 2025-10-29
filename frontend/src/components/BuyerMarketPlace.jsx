@@ -45,7 +45,7 @@ const BuyerMarketplace = () => {
       );
       setRequestStatuses((prev) => ({ ...prev, [cropId]: "pending" }));
     } catch (err) {
-      alert("Contact request failed");
+      alert("Contact request failed", err);
     }
   };
 

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSeedling, FaHandshake, FaShieldAlt, FaChartLine } from "react-icons/fa";
 

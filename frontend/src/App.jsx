@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css'
 import Login from './components/Login';
 import Register from './components/Register'
@@ -11,6 +10,7 @@ import AdminPanel from './components/AdminPanel';
 import Copyright from './components/Copyright';
 import ProfilePage from './components/ProfilePage';
 import NotFound from './components/NotFound';
+
 function App() {
   return (
     <Router>

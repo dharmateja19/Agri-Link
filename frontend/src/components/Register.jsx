@@ -29,6 +29,7 @@ const Register = () => {
         const { name, email, password, mobile, role, location } = formData;
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        const mobileRegex = /^[6-9]\d{9}$/;
 
         if (!name.trim()) newErrors.name = "Name is required";
         if (!email.trim()) newErrors.email = "Email is required";
@@ -42,7 +43,7 @@ const Register = () => {
         }
 
         if (!mobile.trim()) newErrors.mobile = "Mobile number is required";
-        else if (mobile.length < 10) newErrors.mobile = "Mobile number must be at least 10 digits";
+        else if (mobile.length < 10 && mobileRegex.test(mobile)) newErrors.mobile = "Mobile number must be at least 10 digits";
 
         if (!role) newErrors.role = "Please select a role";
         if (!location.trim()) newErrors.location = "Location is required";
@@ -57,7 +58,7 @@ const Register = () => {
         if (!validateForm()) return;
 
         try {
-            const res = await axios.post(`${apiurl}/auth/register`, formData);
+            await axios.post(`${apiurl}/auth/register`, formData);
             alert('Registration successful. Please Login.');
             navigate('/login');
         } catch (error) {
