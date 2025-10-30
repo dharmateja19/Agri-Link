@@ -43,7 +43,7 @@ const Register = () => {
         }
 
         if (!mobile.trim()) newErrors.mobile = "Mobile number is required";
-        else if (mobile.length < 10 && mobileRegex.test(mobile)) newErrors.mobile = "Mobile number must be at least 10 digits";
+        else if (mobile.length < 10 || !mobileRegex.test(mobile)) newErrors.mobile = "Mobile number must be a valid 10-digit number";
 
         if (!role) newErrors.role = "Please select a role";
         if (!location.trim()) newErrors.location = "Location is required";
