@@ -52,8 +52,6 @@ import User from "../models/User.model.js";
 
 const authMiddleware = async (req, res, next) => {
 	try {
-		console.log("Authorization Header:", req.headers.authorization);
-		console.log("JWT Secret Exists:", !!process.env.JWT_SECRET);
 
 		const authHeader = req.headers.authorization;
 
@@ -66,11 +64,7 @@ const authMiddleware = async (req, res, next) => {
 
 		const token = authHeader.split(" ")[1];
 
-		console.log("Token:", token.substring(0, 20) + "...");
-
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-		console.log("Decoded:", decoded);
 
 		const user = await User.findById(decoded.id).select("-password");
 
