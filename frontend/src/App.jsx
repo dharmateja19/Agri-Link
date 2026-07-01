@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import VerifyEmail from "./components/VerifyEmail";
 import ForgotPassword from "./components/ForgotPassword";
-import VerifyResetOTP from "./components/VerifyResetOTP";
+import VerifyResetOTP from "./components/VerifyResetOtp";
 import ResetPassword from "./components/ResetPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
