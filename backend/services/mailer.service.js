@@ -56,7 +56,6 @@
 // 	}
 // };
 
-
 // // import resend from "../config/mail.config.js";
 
 // // export const sendEmail = async ({ to, subject, html }) => {
@@ -82,32 +81,50 @@
 // // 	}
 // // };
 
+// import transporter from "../config/mail.config.js";
+
+// export const sendEmailIfConfigured = async ({ to, subject, html, text }) => {
+// 	if (!transporter || !to) {
+// 		return { sent: false };
+// 	}
+
+// 	try {
+// 		const res = await transporter.sendMail({
+// 			from: process.env.FROM_EMAIL,
+// 			to,
+// 			subject,
+// 			html,
+// 			text,
+// 		});
+// 		// console.log(res)
+
+// 		return {
+// 			sent: true,
+// 		};
+// 	} catch (error) {
+// 		console.error("Email send failed:", error);
+
+// 		return {
+// 			sent: false,
+// 		};
+// 	}
+// };
 
 import transporter from "../config/mail.config.js";
 
 export const sendEmailIfConfigured = async ({ to, subject, html, text }) => {
-	if (!transporter || !to) {
-		return { sent: false };
-	}
-
 	try {
-		const res = await transporter.sendMail({
+		await transporter.sendMail({
 			from: process.env.FROM_EMAIL,
 			to,
 			subject,
 			html,
 			text,
 		});
-		// console.log(res)
 
-		return {
-			sent: true,
-		};
+		return { sent: true };
 	} catch (error) {
 		console.error("Email send failed:", error);
-
-		return {
-			sent: false,
-		};
+		return { sent: false };
 	}
 };
