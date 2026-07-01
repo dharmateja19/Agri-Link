@@ -62,7 +62,7 @@ const Register = () => {
 
 		if (!validateForm()) return;
 
-        setLoading(true);
+		setLoading(true);
 		try {
 			const response = await axios.post(`${apiurl}/auth/register`, formData);
 
@@ -84,34 +84,38 @@ const Register = () => {
 		<div className="bg-gray-300 min-h-screen flex items-center justify-center pt-[70px]">
 			<form
 				onSubmit={handleSubmit}
-				className="border-2 border-black max-w-2xl w-full flex flex-col m-5 p-5 bg-white shadow-xl rounded-xl"
+				className="w-full max-w-2xl bg-gray-100 p-8 rounded-lg shadow-lg"
 			>
 				<h2 className="text-3xl font-bold text-green-700 mb-6 text-center">
 					Register to AgriLink
 				</h2>
 				<label className="mt-2 font-semibold">Name</label>
 				<input
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					type="text"
 					name="name"
 					value={formData.name}
 					placeholder="Enter your name"
 					onChange={handleData}
 				/>
-				{errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
-				<label className="mt-4 font-semibold">Email</label>
+				{errors.name && (
+					<p className="mt-1 text-sm text-red-600">{errors.name}</p>
+				)}
+				<label className="mt-4 mb-1 font-semibold">Email</label>
 				<input
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					type="email"
 					name="email"
 					value={formData.email}
 					placeholder="Enter your email"
 					onChange={handleData}
 				/>
-				{errors.email && <p className="text-red-600 text-sm">{errors.email}</p>}
-				<label className="mt-4 font-semibold">Password</label>
+				{errors.email && (
+					<p className="mt-1 text-sm text-red-600">{errors.email}</p>
+				)}
+				<label className="mt-4 mb-1 font-semibold">Password</label>
 				<input
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					type={showPassword ? "text" : "password"}
 					name="password"
 					value={formData.password}
@@ -119,11 +123,11 @@ const Register = () => {
 					onChange={handleData}
 				/>
 				{errors.password && (
-					<p className="text-red-600 text-sm">{errors.password}</p>
+					<p className="mt-1 text-sm text-red-600">{errors.password}</p>
 				)}
-				<label className="mt-4 font-semibold">Mobile</label>
+				<label className="mt-4 mb-1 font-semibold">Mobile</label>
 				<input
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					type="number"
 					name="mobile"
 					value={formData.mobile}
@@ -131,11 +135,11 @@ const Register = () => {
 					onChange={handleData}
 				/>
 				{errors.mobile && (
-					<p className="text-red-600 text-sm">{errors.mobile}</p>
+					<p className="mt-1 text-sm text-red-600">{errors.mobile}</p>
 				)}
-				<label className="mt-4 font-semibold">Role</label>
+				<label className="mt-4 mb-1 font-semibold">Role</label>
 				<select
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					name="role"
 					value={formData.role}
 					onChange={handleData}
@@ -144,10 +148,12 @@ const Register = () => {
 					<option value="farmer">Farmer</option>
 					<option value="buyer">Buyer</option>
 				</select>
-				{errors.role && <p className="text-red-600 text-sm">{errors.role}</p>}
-				<label className="mt-4 font-semibold">Location</label>
+				{errors.role && (
+					<p className="mt-1 text-sm text-red-600">{errors.role}</p>
+				)}
+				<label className="mt-4 mb-1 font-semibold">Location</label>
 				<input
-					className="border-2 border-black mt-1 px-6 py-2 rounded-2xl"
+					className="w-full mt-2 px-4 py-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
 					type="text"
 					name="location"
 					value={formData.location}
@@ -155,7 +161,7 @@ const Register = () => {
 					onChange={handleData}
 				/>
 				{errors.location && (
-					<p className="text-red-600 text-sm">{errors.location}</p>
+					<p className="mt-1 text-sm text-red-600">{errors.location}</p>
 				)}
 				<div className="mt-4 flex items-center">
 					<input
@@ -173,10 +179,10 @@ const Register = () => {
 					type="submit"
 					value={loading ? "Registering..." : "Register"}
 					disabled={loading}
-					className={`bg-green-500 text-white mt-6 px-6 py-2 rounded-2xl ${
+					className={`w-full py-2 mt-3 rounded text-white transition ${
 						loading
-							? "opacity-50 cursor-not-allowed"
-							: "hover:bg-green-600 cursor-pointer"
+							? "bg-green-400 cursor-not-allowed"
+							: "bg-green-600 hover:bg-green-700 cursor-pointer"
 					}`}
 				/>
 				<p className="text-center mt-4">

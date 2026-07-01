@@ -90,17 +90,26 @@ const Login = () => {
 					required
 				/>
 
-				<div className="mb-4 flex items-center">
-					<input
-						type="checkbox"
-						id="showPassword"
-						className="mr-2"
-						checked={showPassword}
-						onChange={() => setShowPassword(!showPassword)}
-					/>
-					<label htmlFor="showPassword" className="text-sm text-gray-700">
-						Show Password
-					</label>
+				<div className="mb-4 flex items-center justify-between">
+					<div className="flex items-center">
+						<input
+							type="checkbox"
+							id="showPassword"
+							className="mr-2"
+							checked={showPassword}
+							onChange={() => setShowPassword(!showPassword)}
+						/>
+						<label htmlFor="showPassword" className="text-sm text-gray-700">
+							Show Password
+						</label>
+					</div>
+
+					<Link
+						to="/forgot-password"
+						className="text-sm text-green-600 hover:text-green-700 hover:underline transition-colors"
+					>
+						Forgot Password?
+					</Link>
 				</div>
 
 				<input

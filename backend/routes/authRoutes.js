@@ -9,6 +9,7 @@ import {
 	forgotPassword,
 	resetPassword,
 	getCurrentUser,
+	verifyResetOTP
 } from "../controllers/auth.controller.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -26,6 +27,8 @@ router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 
 router.post("/forgot-password", forgotPassword);
+
+router.post("/verify-reset-otp", verifyResetOTP);
 
 router.post("/reset-password", resetPassword);
 

@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema(
 		role: {
 			type: String,
 			enum: ["farmer", "buyer", "admin"],
-			required: true
+			required: true,
 		},
 
 		location: {
@@ -79,12 +79,36 @@ const UserSchema = new mongoose.Schema(
 			type: Date,
 			default: null,
 		},
+
+		passwordResetOTP: {
+			type: String,
+			default: null,
+		},
+
+		passwordResetExpires: {
+			type: Date,
+			default: null,
+		},
+
+		passwordResetAttempts: {
+			type: Number,
+			default: 0,
+		},
+
+		lastPasswordResetOTPSentAt: {
+			type: Date,
+			default: null,
+		},
+
+		passwordResetVerified: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	{
 		timestamps: true,
 	},
 );
-
 
 const User = mongoose.model("User", UserSchema);
 
