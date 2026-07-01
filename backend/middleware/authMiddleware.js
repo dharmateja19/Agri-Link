@@ -1,8 +1,60 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.model.js";
 
+// const authMiddleware = async (req, res, next) => {
+// 	try {
+// 		const authHeader = req.headers.authorization;
+
+// 		if (!authHeader || !authHeader.startsWith("Bearer ")) {
+// 			return res.status(401).json({
+// 				success: false,
+// 				message: "Unauthorized. Please login.",
+// 			});
+// 		}
+
+// 		const token = authHeader.split(" ")[1];
+
+// 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+// 		const user = await User.findById(decoded.id).select("-password");
+
+// 		if (!user) {
+// 			return res.status(401).json({
+// 				success: false,
+// 				message: "User not found.",
+// 			});
+// 		}
+
+// 		if (!user.isVerified) {
+// 			return res.status(403).json({
+// 				success: false,
+// 				message: "Please verify your email.",
+// 			});
+// 		}
+
+// 		if (user.accountStatus !== "active") {
+// 			return res.status(403).json({
+// 				success: false,
+// 				message: "Your account has been blocked.",
+// 			});
+// 		}
+
+// 		req.user = user;
+
+// 		next();
+// 	} catch (error) {
+// 		return res.status(401).json({
+// 			success: false,
+// 			message: "Unauthorized. Invalid or expired token.",
+// 		});
+// 	}
+// };
+
 const authMiddleware = async (req, res, next) => {
 	try {
+		console.log("Authorization Header:", req.headers.authorization);
+		console.log("JWT Secret Exists:", !!process.env.JWT_SECRET);
+
 		const authHeader = req.headers.authorization;
 
 		if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -14,7 +66,11 @@ const authMiddleware = async (req, res, next) => {
 
 		const token = authHeader.split(" ")[1];
 
+		console.log("Token:", token.substring(0, 20) + "...");
+
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+		console.log("Decoded:", decoded);
 
 		const user = await User.findById(decoded.id).select("-password");
 
@@ -25,27 +81,15 @@ const authMiddleware = async (req, res, next) => {
 			});
 		}
 
-		if (!user.isVerified) {
-			return res.status(403).json({
-				success: false,
-				message: "Please verify your email.",
-			});
-		}
-
-		if (user.accountStatus !== "active") {
-			return res.status(403).json({
-				success: false,
-				message: "Your account has been blocked.",
-			});
-		}
-
 		req.user = user;
 
 		next();
 	} catch (error) {
+		console.error("AUTH ERROR:", error);
+
 		return res.status(401).json({
 			success: false,
-			message: "Unauthorized. Invalid or expired token.",
+			message: error.message,
 		});
 	}
 };
