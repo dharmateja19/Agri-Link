@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
 const ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
 const fetchCropImage = async (cropName) => {

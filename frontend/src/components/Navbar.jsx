@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     navigate('/', { replace: true });
   };
 
@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <Link
               to="/"
-              className="hover:underline hover:text-yellow-300 font-medium"
+              className=" hover:text-yellow-300 font-medium"
               onClick={() => setIsOpen(false)}
             >
               Home
@@ -40,14 +40,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/register"
-                  className="hover:underline hover:text-yellow-300 font-medium"
+                  className=" hover:text-yellow-300 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Register
                 </Link>
                 <Link
                   to="/login"
-                  className="hover:underline hover:text-yellow-300 font-medium"
+                  className=" hover:text-yellow-300 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
@@ -57,21 +57,21 @@ const Navbar = () => {
               <>
                 <Link
                   to={`/${user.role}/dashboard`}
-                  className="hover:underline hover:text-yellow-300 font-medium"
+                  className=" hover:text-yellow-300 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/user/profile"
-                  className="hover:underline hover:text-yellow-300 font-medium"
+                  className=" hover:text-yellow-300 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {user.name}
                 </Link>
                 <button
                   onClick={() => { handleLogout(); setIsOpen(false); }}
-                  className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded font-medium"
+                  className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded font-medium cursor-pointer"
                 >
                   Logout
                 </button>

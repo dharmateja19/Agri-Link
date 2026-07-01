@@ -18,7 +18,7 @@ const FarmerDashboard = () => {
     description : ""
   });
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     if (activeTab === "crops") fetchCrops();

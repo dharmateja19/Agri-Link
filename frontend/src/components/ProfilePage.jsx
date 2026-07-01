@@ -5,7 +5,7 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [crops, setCrops] = useState([]);
   const [orders, setOrders] = useState([]);
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   const fetchUser = async () => {
     try {

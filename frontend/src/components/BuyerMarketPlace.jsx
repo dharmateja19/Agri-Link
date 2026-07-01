@@ -10,7 +10,7 @@ const BuyerMarketplace = () => {
   const [requestStatuses, setRequestStatuses] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   // Fetch all crops
   const fetchCrops = async () => {

@@ -9,7 +9,7 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('users');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     axios.get(`${apiurl}/users`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setUsers(res.data.users));
     axios.get(`${apiurl}/crops`, { headers: { Authorization: `Bearer ${token}` } })
