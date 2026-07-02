@@ -9,6 +9,7 @@ import authMiddleware from './middleware/authMiddleware.js';
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js';
 import contactRequestRoutes from './routes/contactRequestRoutes.js'
+import dealRoutes from './routes/dealRoutes.js'
 const PORT = process.env.PORT;
 const app = express();
 
@@ -26,6 +27,7 @@ app.get('/', (req,res) => {
 
 app.use('/auth',authRoutes);
 app.use('/crops',authMiddleware,cropRoutes);
+app.use('/deals', authMiddleware, dealRoutes)
 app.use('/users',authMiddleware ,userRoutes);
 app.use('/orders',authMiddleware,orderRoutes);
 app.use('/contact',authMiddleware,contactRequestRoutes);

@@ -18,6 +18,10 @@ import NotFound from "./components/NotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import BuyerDeals from "./components/BuyerDeals";
+import FarmerDeals from "./components/FarmerDeals";
+import DealDetails from "./components/DealDetails";
+
 function App() {
 	return (
 		<Router>
@@ -35,6 +39,9 @@ function App() {
 					<Route path="/buyer/dashboard" element={<BuyerMarketplace />} />
 					<Route path="/admin/dashboard" element={<AdminPanel />} />
 					<Route path="/user/profile" element={<ProfilePage />} />
+					<Route path="/buyer/deals" element={<BuyerDeals />} />
+					<Route path="/farmer/deals" element={<FarmerDeals />} />
+					<Route path="/deals/:id" element={<DealDetails />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
